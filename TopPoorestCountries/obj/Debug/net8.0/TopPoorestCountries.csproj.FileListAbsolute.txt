@@ -1,0 +1,15 @@
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/TopPoorestCountries.csproj.AssemblyReference.cache
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/Avalonia/Resources.Inputs.cache
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/Avalonia/resources
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/TopPoorestCountries.GeneratedMSBuildEditorConfig.editorconfig
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/TopPoorestCountries.AssemblyInfoInputs.cache
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/TopPoorestCountries.AssemblyInfo.cs
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/TopPoorestCountries.csproj.CoreCompileInputs.cache
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/TopPoorestCountries.sourcelink.json
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/Avalonia/TopPoorestCountries.dll
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/Avalonia/TopPoorestCountries.pdb
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/refint/Avalonia/TopPoorestCountries.dll
+/tmp/poorestcountryrank/TopPoorestCountries/bin/Debug/net8.0/TopPoorestCountries.deps.json
+/tmp/poorestcountryrank/TopPoorestCountries/bin/Debug/net8.0/TopPoorestCountries.dll
+/tmp/poorestcountryrank/TopPoorestCountries/bin/Debug/net8.0/TopPoorestCountries.pdb
+/tmp/poorestcountryrank/TopPoorestCountries/obj/Debug/net8.0/ref/TopPoorestCountries.dll

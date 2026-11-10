@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "2r6iQAt7bPU=",
+  "success": true,
+  "projectFilePath": "/app/applet/poorestcountryrank/TopPoorestCountries/TopPoorestCountries.csproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/avalonia/11.1.3/avalonia.11.1.3.nupkg.sha512",
+    "/root/.nuget/packages/avalonia.buildservices/0.0.29/avalonia.buildservices.0.0.29.nupkg.sha512",
+    "/root/.nuget/packages/avalonia.controls.datagrid/11.1.3/avalonia.controls.datagrid.11.1.3.nupkg.sha512",
+    "/root/.nuget/packages/avalonia.fonts.inter/11.1.3/avalonia.fonts.inter.11.1.3.nupkg.sha512",
+    "/root/.nuget/packages/avalonia.remote.protocol/11.1.3/avalonia.remote.protocol.11.1.3.nupkg.sha512",
+    "/root/.nuget/packages/avalonia.themes.fluent/11.1.3/avalonia.themes.fluent.11.1.3.nupkg.sha512",
+    "/root/.nuget/packages/communitytoolkit.mvvm/8.2.2/communitytoolkit.mvvm.8.2.2.nupkg.sha512",
+    "/root/.nuget/packages/microcom.runtime/0.11.0/microcom.runtime.0.11.0.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.net.illink.tasks/8.0.34/microsoft.net.illink.tasks.8.0.34.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.netcore.app.runtime.win-x64/8.0.34/microsoft.netcore.app.runtime.win-x64.8.0.34.nupkg.sha512",
+    "/root/.nuget/packages/microsoft.aspnetcore.app.runtime.win-x64/8.0.34/microsoft.aspnetcore.app.runtime.win-x64.8.0.34.nupkg.sha512"
+  ],
+  "logs": []
+}

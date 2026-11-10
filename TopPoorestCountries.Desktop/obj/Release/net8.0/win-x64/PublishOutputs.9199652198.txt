@@ -1,0 +1,6 @@
+/app/applet/poorestcountryrank/publish/TopPoorestCountries.Desktop.pdb
+/app/applet/poorestcountryrank/publish/av_libglesv2.dll
+/app/applet/poorestcountryrank/publish/libHarfBuzzSharp.dll
+/app/applet/poorestcountryrank/publish/libSkiaSharp.dll
+/app/applet/poorestcountryrank/publish/TopPoorestCountries.pdb
+/app/applet/poorestcountryrank/publish/TopPoorestCountries.Desktop.exe

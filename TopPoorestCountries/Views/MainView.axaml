@@ -1,0 +1,193 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:TopPoorestCountries.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="700"
+             x:Class="TopPoorestCountries.Views.MainView"
+             x:DataType="vm:MainViewModel">
+
+    <Grid RowDefinitions="Auto, Auto, *, Auto">
+        <!-- Header Banner -->
+        <Border Grid.Row="0" Background="#1E293B" Padding="20,16">
+            <Grid ColumnDefinitions="*, Auto">
+                <StackPanel Grid.Column="0" Spacing="4">
+                    <TextBlock Text="TOP QUỐC GIA NGHÈO NHẤT THẾ GIỚI" 
+                               FontSize="20" FontWeight="Bold" Foreground="White" />
+                    <TextBlock Text="Dữ liệu IMF &amp; Global Finance Magazine · Xếp hạng theo GDP (PPP) bình quân đầu người" 
+                               FontSize="12" Foreground="#94A3B8" />
+                </StackPanel>
+                
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="16" VerticalAlignment="Center">
+                    <Border Background="#334155" CornerRadius="6" Padding="12,6">
+                        <StackPanel>
+                            <TextBlock Text="QUỐC GIA NGHÈO NHẤT" FontSize="10" Foreground="#94A3B8" />
+                            <TextBlock Text="Nam Sudan ($455)" FontSize="13" FontWeight="SemiBold" Foreground="#F87171" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Thanh công cụ tìm kiếm và Bộ lọc thể chế chính trị -->
+        <Border Grid.Row="1" Background="#0F172A" BorderBrush="#334155" BorderThickness="0,0,0,1" Padding="16,12">
+            <WrapPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,16,0">
+                    <TextBlock Text="Tìm kiếm:" VerticalAlignment="Center" Foreground="#E2E8F0" FontSize="13"/>
+                    <TextBox Text="{Binding SearchText, Mode=TwoWay}" 
+                             Watermark="Tên nước (Anh/Việt), thủ đô..." 
+                             Width="240" Height="34" CornerRadius="6"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,16,0">
+                    <TextBlock Text="Thể chế chính trị:" VerticalAlignment="Center" Foreground="#E2E8F0" FontSize="13"/>
+                    <ComboBox ItemsSource="{Binding PoliticalSystems}" 
+                              SelectedItem="{Binding SelectedPoliticalSystem, Mode=TwoWay}"
+                              Width="230" Height="34" CornerRadius="6"/>
+                </StackPanel>
+
+                <Button Content="Đặt lại bộ lọc" Command="{Binding ResetFilterCommand}" 
+                        Height="34" CornerRadius="6" Background="#334155" Foreground="White"/>
+            </WrapPanel>
+        </Border>
+
+        <!-- DataGrid chính hiển thị danh sách với Cột Thể chế chính trị và Tên quốc gia có tên tiếng Việt -->
+        <Grid Grid.Row="2" ColumnDefinitions="*, Auto">
+            <DataGrid Grid.Column="0" 
+                      ItemsSource="{Binding FilteredCountries}" 
+                      SelectedItem="{Binding SelectedCountry}"
+                      AutoGenerateColumns="False" 
+                      IsReadOnly="True"
+                      GridLinesVisibility="Horizontal"
+                      CanUserReorderColumns="True"
+                      CanUserResizeColumns="True"
+                      CanUserSortColumns="True"
+                      Margin="12"
+                      RowBackground="#1E293B"
+                      Background="#0F172A">
+                <DataGrid.Columns>
+                    <!-- Cột Xếp hạng -->
+                    <DataGridTextColumn Header="Hạng" Binding="{Binding Rank}" Width="70" />
+
+                    <!-- Cột Tên quốc gia kèm tiếng Việt trong ngoặc đơn -->
+                    <DataGridTemplateColumn Header="Quốc Gia (Kèm tiếng Việt)" Width="280">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="8" VerticalAlignment="Center" Margin="8,0">
+                                    <TextBlock Text="{Binding FlagEmoji}" FontSize="16" VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding FormattedName}" FontWeight="SemiBold" 
+                                               Foreground="#F1F5F9" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Cột THỂ CHẾ CHÍNH TRỊ (Political System) theo yêu cầu -->
+                    <DataGridTemplateColumn Header="Thể Chế Chính Trị" Width="230">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Background="#1E1B4B" BorderBrush="#4338CA" BorderThickness="1" 
+                                        CornerRadius="4" Padding="8,4" HorizontalAlignment="Left" Margin="4,0">
+                                    <TextBlock Text="{Binding PoliticalSystem}" Foreground="#A5B4FC" 
+                                               FontSize="12" FontWeight="Medium" />
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Cột GDP PPP per capita -->
+                    <DataGridTemplateColumn Header="GDP (PPP) / người" Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding FormattedGdp}" FontWeight="Bold" 
+                                           Foreground="#F87171" VerticalAlignment="Center" Margin="8,0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Cột Thủ đô -->
+                    <DataGridTextColumn Header="Thủ Đô" Binding="{Binding Capital}" Width="140" />
+
+                    <!-- Cột Dân số -->
+                    <DataGridTextColumn Header="Dân Số" Binding="{Binding FormattedPopulation}" Width="130" />
+
+                    <!-- Cột Châu lục -->
+                    <DataGridTextColumn Header="Châu Lục" Binding="{Binding Continent}" Width="110" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <!-- Bảng chi tiết bên phải khi chọn 1 quốc gia -->
+            <Border Grid.Column="1" Width="320" Background="#1E293B" BorderBrush="#334155" 
+                    BorderThickness="1,0,0,0" Padding="16"
+                    IsVisible="{Binding SelectedCountry, Converter={x:Static ObjectConverters.IsNotNull}}">
+                <ScrollViewer>
+                    <StackPanel Spacing="14">
+                        <Grid ColumnDefinitions="*, Auto">
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="HỒ SƠ QUỐC GIA" FontSize="11" Foreground="#94A3B8" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding SelectedCountry.FormattedName}" 
+                                           FontSize="16" FontWeight="Bold" Foreground="White" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <TextBlock Grid.Column="1" Text="{Binding SelectedCountry.FlagEmoji}" FontSize="32"/>
+                        </Grid>
+
+                        <Separator Background="#334155" />
+
+                        <!-- Thể chế chính trị chi tiết -->
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="THỂ CHẾ CHÍNH TRỊ" FontSize="11" Foreground="#94A3B8" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding SelectedCountry.PoliticalSystem}" 
+                                       FontSize="14" FontWeight="Bold" Foreground="#818CF8"/>
+                            <TextBlock Text="{Binding SelectedCountry.PoliticalSystemDetails}" 
+                                       FontSize="12" Foreground="#CBD5E1" TextWrapping="Wrap" LineHeight="18"/>
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="LÃNH ĐẠO / CHÍNH QUYỀN HIỆN NAY" FontSize="11" Foreground="#94A3B8" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding SelectedCountry.RulingPartyOrLeader}" 
+                                       FontSize="13" Foreground="#F1F5F9" TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="GDP (PPP) BÌNH QUÂN ĐẦU NGƯỜI" FontSize="11" Foreground="#94A3B8" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding SelectedCountry.FormattedGdp}" 
+                                       FontSize="22" FontWeight="Bold" Foreground="#EF4444"/>
+                            <TextBlock Text="Nguồn: IMF World Economic Outlook / Global Finance" 
+                                       FontSize="11" Foreground="#64748B"/>
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="THỦ ĐÔ &amp; DÂN SỐ" FontSize="11" Foreground="#94A3B8" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding SelectedCountry.Capital}" Foreground="#F1F5F9" FontSize="13"/>
+                            <TextBlock Text="{Binding SelectedCountry.FormattedPopulation, StringFormat='{}Dân số: {0} người'}" 
+                                       Foreground="#94A3B8" FontSize="12"/>
+                        </StackPanel>
+
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="NGUYÊN NHÂN NGHÈO ĐÓI CHÍNH" FontSize="11" Foreground="#94A3B8" FontWeight="SemiBold"/>
+                            <ItemsControl ItemsSource="{Binding SelectedCountry.PrimaryCauses}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding StringFormat='• {0}'}" 
+                                                   FontSize="12" Foreground="#FDA4AF" Margin="0,2" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <!-- Thanh trạng thái phía dưới -->
+        <Border Grid.Row="3" Background="#0F172A" BorderBrush="#334155" BorderThickness="0,1,0,0" Padding="16,8">
+            <Grid ColumnDefinitions="*, Auto">
+                <TextBlock Grid.Column="0" 
+                           Text="{Binding FilteredCountries.Count, StringFormat='Hiển thị {0} quốc gia theo bộ lọc'}" 
+                           FontSize="12" Foreground="#94A3B8"/>
+                <TextBlock Grid.Column="1" Text="Avalonia UI 11 · Cross-Platform (Windows &amp; Android)" 
+                           FontSize="12" Foreground="#64748B"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
