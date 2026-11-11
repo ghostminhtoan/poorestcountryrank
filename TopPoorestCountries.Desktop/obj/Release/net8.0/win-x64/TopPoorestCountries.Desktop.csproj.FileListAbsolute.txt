@@ -229,3 +229,4 @@
 /app/applet/poorestcountryrank/TopPoorestCountries.Desktop/obj/Release/net8.0/win-x64/TopPoorestCountries.Desktop.pdb
 /app/applet/poorestcountryrank/TopPoorestCountries.Desktop/obj/Release/net8.0/win-x64/TopPoorestCountries.Desktop.genruntimeconfig.cache
 /app/applet/poorestcountryrank/TopPoorestCountries.Desktop/obj/Release/net8.0/win-x64/ref/TopPoorestCountries.Desktop.dll
+/app/applet/poorestcountryrank/TopPoorestCountries.Desktop/obj/Release/net8.0/win-x64/TopPoorestCountries.Desktop.sourcelink.json
